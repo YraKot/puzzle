@@ -11,10 +11,25 @@ document.getElementById("play").onclick = function (){
 	img.addEventListener('load', splitImg, false);
 	img.src = "./images/default.jpg";
 
+	/// set background img
+	var el = document.getElementById("canvasBg");
+	el.style.backgroundImage = "url(" + img.src + ")";
+	
+	var css = {
+			opacity: "0.5",
+			backgroundRepeat: "no-repeat",
+			backgroundPosition: "50% 0",
+			backgroundSize: "cover"
+		}
+	for(i in css){
+		el.style[i] = css[i];
+	}
+
 	function handleImage(e){
 		var reader = new FileReader();
 		reader.onload = function(event){
 		
+		/// iimage onload and set to drop
 			img = new Image();
 			
 			img.onload = splitImg;
@@ -26,7 +41,7 @@ document.getElementById("play").onclick = function (){
 	}
 
 	function clear() {
-		var container = document.getElementById("canvas");
+		var container = document.getElementById("pieces");
 		container.innerHTML="";
 	}
 
@@ -101,7 +116,7 @@ document.getElementById("play").onclick = function (){
 				// slicedImage.setAttribute('crossOrigin', 'anonymous');
 				
 			slicedImage.src = parts[i];
-			var div = document.getElementById("canvas");
+			var div = document.getElementById("pieces");
 			div.appendChild( slicedImage );
 		}
 	}
