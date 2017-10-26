@@ -26,7 +26,7 @@ document.getElementById("play").onclick = function (){
 	}
 
 	function clear() {
-		var container = document.getElementById("test");
+		var container = document.getElementById("canvas");
 		container.innerHTML="";
 	}
 
@@ -101,7 +101,7 @@ document.getElementById("play").onclick = function (){
 				// slicedImage.setAttribute('crossOrigin', 'anonymous');
 				
 			slicedImage.src = parts[i];
-			var div = document.getElementById("test");
+			var div = document.getElementById("canvas");
 			div.appendChild( slicedImage );
 		}
 	}
