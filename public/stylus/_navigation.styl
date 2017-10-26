@@ -1,0 +1,45 @@
+nav 
+	border: 1px solid red
+	
+	display: flex;
+	flex-direction: row;
+	/* flex-wrap: wrap; */
+	justify-content: center;
+	align-items: center;
+
+	width: 1200px;
+	height: 80px;
+
+	background: rgba(255,255,255, 0.3);
+	border: 3px solid rgba(0, 0, 0, 0.1);
+	border-radius: 30px;
+
+	margin: 10px auto;
+
+	// background-color: rgba(0,0,0.9); 
+	/* padding: 10px; */
+
+	/* text-align: center; */
+	.fileContainer
+		cursor: pointer;
+		border: 3px solid rgba(0, 0, 0, 0.1);
+		width: 160px;
+		height: 54px;
+		border-radius: 30px;
+		font: 24px/50px Lato;
+		text-align: center;
+		background: rgba(255,255,255, 0.95);
+
+	.fileContainer [type=file] 
+		cursor: pointer;
+		opacity: 0;
+
+	#play,#help
+		cursor: pointer
+		width: 140px;
+		height: 60px;
+		border-radius: 30px;
+		font-size: 24px;
+		font-family: Lato;
+		background: rgba(255,255,255, 0.95);
+		border: 3px solid rgba(0, 0, 0, 0.1);
