@@ -12,8 +12,8 @@ document.getElementById("play").onclick = function (){
 	img.src = "./images/default.jpg";
 
 	/// set background img
-	// var el = document.getElementById("canvasBg");
-	// el.style.backgroundImage = "url(" + img.src + ")";
+	var el = document.getElementById("canvasBg");
+	el.style.backgroundImage = "url(" + img.src + ")";
 	
 	// var css = {
 	// 		opacity: "0.5",
@@ -119,14 +119,14 @@ document.getElementById("play").onclick = function (){
 		}
 		var elems = document.getElementsByClassName("draggable");
 		for(i=0; i<elems.length; i++){
+			elems[i].style.zIndex = "2";
+			elems[i].style.position = "absolute";
 			if(i % 2){
 			  elems[i].style.top = i * 80 + 'px';
 			  elems[i].style.left = i * 40 + 'px'; 
-			  elems[i].style.position = "absolute";
 			} else {
 			  elems[i].style.top = i * 80 + 'px' ;
 			  elems[i].style.left = (i+1) * 20 + 'px';
-			  elems[i].style.position = "absolute";
 			}
 		}
 		var els = document.getElementsByClassName('draggable');
