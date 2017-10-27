@@ -11,7 +11,7 @@ document.getElementById("play").onclick = function (){
 	img.addEventListener('load', splitImg, false);
 	img.src = "./images/default.jpg";
 
-	/// set background img
+	/// set default background img
 	var el = document.getElementById("canvasBg");
 	el.style.backgroundImage = "url(" + img.src + ")";
 	
@@ -35,6 +35,8 @@ document.getElementById("play").onclick = function (){
 			img.onload = splitImg;
 				
 			img.src = event.target.result;
+			var el = document.getElementById("canvasBg");
+			el.style.backgroundImage = "url(" + img.src + ")";
 		}
 		var file = document.querySelector('input[type=file]').files[0];
 		reader.readAsDataURL(file);     
