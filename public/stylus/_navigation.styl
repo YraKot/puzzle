@@ -1,45 +1,59 @@
 nav 
-	border: 1px solid red
-	
 	display: flex;
 	flex-direction: row;
 	/* flex-wrap: wrap; */
-	justify-content: center;
+	justify-content: space-around;
 	align-items: center;
 
-	width: 1200px;
-	height: 80px;
-
-	background: rgba(255,255,255, 0.3);
-	border: 3px solid rgba(0, 0, 0, 0.1);
-	border-radius: 30px;
-
-	margin: 10px auto;
+	height: 60px;
+	background: #fff;
+	border-bottom: 2px solid #D6D6D6;
+	margin-bottom: 30px;
 
 	// background-color: rgba(0,0,0.9); 
 	/* padding: 10px; */
 
 	/* text-align: center; */
+	h3 	
+		font-family: "SF";
+		font-size: 30px;
+		letter-spacing: 1px;
+
+
 	.fileContainer
 		cursor: pointer;
-		border: 3px solid rgba(0, 0, 0, 0.1);
-		width: 160px;
-		height: 54px;
-		border-radius: 30px;
-		font: 24px/50px Lato;
+		border-radius: 3px;
+		// font-weight: 400;
+		letter-spacing: 0em;
+		font-family: SF;
+		color: #fff;
+		// background: #0070c9;
+		// background-image: linear-gradient(rgb(66, 161, 236), rgb(0, 112, 201));
+		// border: 1px solid #07c;
+		color: #e85d00; 
+		background: transparent;
+		border: 2px solid #e85d00; 
+		width: 140px;
+		height: 28px;
+		font: 17px/30px SF;
 		text-align: center;
-		background: rgba(255,255,255, 0.95);
+		margin: 30px;
 
 	.fileContainer [type=file] 
 		cursor: pointer;
 		opacity: 0;
 
 	#play,#help
-		cursor: pointer
-		width: 140px;
-		height: 60px;
-		border-radius: 30px;
-		font-size: 24px;
-		font-family: Lato;
-		background: rgba(255,255,255, 0.95);
-		border: 3px solid rgba(0, 0, 0, 0.1);
+		cursor: pointer;
+		border-radius: 4px;
+		font-size: 17px;
+		line-height: 1.5;
+		// font-weight: 400;
+		font-family: SF;
+		letter-spacing: 1px;
+		color: #fff;
+		background: #0070c9;
+		background-image: linear-gradient(rgb(66, 161, 236), rgb(0, 112, 201));
+		border: 1px solid #07c;
+		padding: 2px 15px;
+		margin: 30px;
