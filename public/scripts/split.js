@@ -1,4 +1,3 @@
-document.getElementById("play").onclick = function (){
 	var imageLoader = document.getElementById('imageLoader');
 		imageLoader.addEventListener('change', handleImage, false);
 	var canvas = document.createElement("canvas");
@@ -12,9 +11,9 @@ document.getElementById("play").onclick = function (){
 	img.src = "./images/default.jpg";
 
 	/// set default background img
-	var el = document.getElementById("canvasBg");
-	el.style.backgroundImage = "url(" + img.src + ")";
-	
+	// var el = document.getElementById("pieces");
+	// 	el.style.backgroundImage = "url(" + img.src + ")";
+		
 	// var css = {
 	// 		opacity: "0.5",
 	// 		backgroundRepeat: "no-repeat",
@@ -36,8 +35,8 @@ document.getElementById("play").onclick = function (){
 				
 			img.src = event.target.result;
 
-			var el = document.getElementById("canvasBg");
-			el.style.backgroundImage = "url(" + img.src + ")";
+			// var el = document.getElementById("picese");
+			// el.style.backgroundImage = "url(" + img.src + ")";
 		}
 		var file = document.querySelector('input[type=file]').files[0];
 		reader.readAsDataURL(file);     
@@ -51,6 +50,7 @@ document.getElementById("play").onclick = function (){
 	
 
 	function splitImg() {
+		alert(this.width + " " + this.height);
 		parts = [];
 		// var width = Math.floor(img.width / count);
 		// var height = Math.floor(img.height / count);
@@ -120,21 +120,21 @@ document.getElementById("play").onclick = function (){
 			var div = document.getElementById("pieces");
 			div.appendChild( slicedImage );
 		}
-		var elems = document.getElementsByClassName("draggable");
-		for(i=0; i<elems.length; i++){
-			elems[i].style.zIndex = "2";
-			elems[i].style.position = "absolute";
-			if(i % 2){
-			  elems[i].style.top = i * 80 + 'px';
-			  elems[i].style.left = i * 40 + 'px'; 
-			} else {
-			  elems[i].style.top = i * 80 + 'px' ;
-			  elems[i].style.left = (i+1) * 20 + 'px';
-			}
-		}
+		// var elems = document.getElementsByClassName("draggable");
+		// for(i=0; i<elems.length; i++){
+		// 	elems[i].style.zIndex = "2";
+		// 	elems[i].style.position = "absolute";
+		// 	if(i % 2){
+		// 	  elems[i].style.top = i * 80 + 'px';
+		// 	  elems[i].style.left = i * 40 + 'px'; 
+		// 	} else {
+		// 	  elems[i].style.top = i * 80 + 'px' ;
+		// 	  elems[i].style.left = (i+1) * 20 + 'px';
+		// 	}
+		// }
 	  
 
 	}
 	
-}
+
 

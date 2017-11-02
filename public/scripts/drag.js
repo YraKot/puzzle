@@ -36,9 +36,9 @@ var DragManager = new function() {
 			var moveX = e.pageX - dragObject.downX;
 			var moveY = e.pageY - dragObject.downY;
 			// якщо зажата миша пересунулося недостатньо далеко
-			if (Math.abs(moveX) < 3 && Math.abs(moveY) < 3) {
-			return;
-		}
+			// if (Math.abs(moveX) < 3 && Math.abs(moveY) < 3) {
+			// 	return;
+			// }
 		// початок переносу
 		dragObject.avatar = createAvatar(e); 
 		if (!dragObject.avatar) { // відміна переносу, неможливо захопити цю частину елементу
@@ -113,7 +113,7 @@ var DragManager = new function() {
 	function findDroppable(event) {
 		// сховати переносимий елемент
 		dragObject.avatar.hidden = true;
-		
+		// console.log(dragObject);
 		var elem = document.elementFromPoint(event.clientX, event.clientY);
 		
 		dragObject.avatar.hidden = false;
@@ -129,8 +129,23 @@ var DragManager = new function() {
 	document.onmouseup = onMouseUp;
 	document.onmousedown = onMouseDown;
 
-	this.onDragEnd = function(dragObject, dropElem) {};
-	this.onDragCancel = function(dragObject) {};
+	this.onDragEnd = function(dragObject, dropElem) {
+		// dragObject.elem.style.display = 'none';
+		console.log(JSON.stringify(dragObject))
+		
+
+
+		var box = document.getElementById("canvasBg");
+		box.outerHTML;
+			console.log(box.clientWidth + " " + box.clientHeight);
+		
+		
+	};
+
+	this.onDragCancel = function(dragObject) {
+		// dragObject.avatar.rollback();
+		// console.log('rollback')
+	};
 
 };
 

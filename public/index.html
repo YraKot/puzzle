@@ -10,27 +10,20 @@
 <body id="bg">
 	<nav>	
 			<h3>N-game</h3> 
-			<button id="play">play</button>
+			<button id="play" onclick="Play()">play</button>
 			<label class="fileContainer">
 					choose image
 					<input type="file" id="imageLoader" name="imageLoader" />
 			</label>
 			
-			<button id="help">help</button>
+			<button id="help" onclick="Help()">help</button>
 	</nav>
-
 	<div class="wrap">
-			<div id="pieces"></div>
-			<div id="canvasBg">
-				<!-- <img src="./images/default.jpg" alt=""  id="img" /> -->
-			</div>
-	</div>
-	
-
+		<div id="pieces"></div>
 	</div>
 	
 	<footer>
-		<div id="hex"></div>
+		<h3>© N-game 2017</h3>
 	</footer>
 
 	<script src="/dist/scripts.js"></script>
