@@ -1,3 +1,5 @@
+
+
 var DragManager = new function() {
 	  /**
 	   * {
@@ -8,7 +10,7 @@ var DragManager = new function() {
 	   * }
 	   */
 	var dragObject = {};
-
+	var createdParts = [];
 	var self = this;
 
 	function onMouseDown(e) {
@@ -36,9 +38,9 @@ var DragManager = new function() {
 			var moveX = e.pageX - dragObject.downX;
 			var moveY = e.pageY - dragObject.downY;
 			// якщо зажата миша пересунулося недостатньо далеко
-			if (Math.abs(moveX) < 3 && Math.abs(moveY) < 3) {
-			return;
-		}
+			// if (Math.abs(moveX) < 3 && Math.abs(moveY) < 3) {
+			// 	return;
+			// }
 		// початок переносу
 		dragObject.avatar = createAvatar(e); 
 		if (!dragObject.avatar) { // відміна переносу, неможливо захопити цю частину елементу
@@ -61,6 +63,15 @@ var DragManager = new function() {
 	}
 
 	function onMouseUp(e) {
+		e.target.classList.add('puzzle')
+		var ind = createdParts.indexOf(e.target.src);
+		console.log(ind)
+		if (ind !== -1) {
+			createdParts[ind] = null;
+		};
+		console.log(createdParts)
+		
+
 		if (dragObject.avatar) { // якшо перенос працює
 			finishDrag(e);
 		}
@@ -105,6 +116,7 @@ var DragManager = new function() {
 	function startDrag(e) {
 		var avatar = dragObject.avatar;
 		// ініціалізація початку переносу
+		
 		document.body.appendChild(avatar);
 		avatar.style.zIndex = 9999;
 		avatar.style.position = 'absolute';
@@ -113,7 +125,7 @@ var DragManager = new function() {
 	function findDroppable(event) {
 		// сховати переносимий елемент
 		dragObject.avatar.hidden = true;
-		
+		// console.log(dragObject);
 		var elem = document.elementFromPoint(event.clientX, event.clientY);
 		
 		dragObject.avatar.hidden = false;
@@ -129,8 +141,115 @@ var DragManager = new function() {
 	document.onmouseup = onMouseUp;
 	document.onmousedown = onMouseDown;
 
-	this.onDragEnd = function(dragObject, dropElem) {};
-	this.onDragCancel = function(dragObject) {};
+	var box = document.getElementById('canvasBg');
+
+
+	var topCorner = {
+		top: box.offsetTop ,
+		left : box.offsetLeft 
+	}
+
+	this.onDragEnd = function(dragObject, dropElem) {
+		// dragObject.elem.style.display = 'none';
+		//console.log(JSON.stringify(dragObject));
+		
+		
+		
+			
+		var elem = dragObject.elem;
+		var box = document.getElementsByClassName('wrap')[0];
+		var itemCorner = {
+			top: elem.offsetTop - box.offsetTop ,
+			left : elem.offsetLeft - box.offsetLeft
+		}
+	
+
+		var left = (itemCorner.left - topCorner.left) % elem.clientWidth  ;
+		var top = (itemCorner.top - topCorner.top) % elem.clientHeight;
+
+		left = left > elem.clientWidth / 2  ?  left - elem.clientWidth : left  ;
+		top = top > elem.clientHeight / 2 ? top - elem.clientHeight : top ;  
+
+		
+		
+		if (Math.abs(top) < elem.clientHeight / 2) {
+			if (Math.abs(left)< elem.clientWidth / 2) {
+				 
+				
+				 dragObject.elem.style.left =  parseInt(dragObject.elem.style.left) -  left+ 'px';
+				 dragObject.elem.style.top = parseInt(dragObject.elem.style.top) -  top  + 'px';
+				
+				 var i = Math.ceil(  parseInt(dragObject.elem.style.left)/ elem.clientWidth)  -1;
+				 var j = Math.ceil(parseInt(dragObject.elem.style.top)  / elem.clientHeight) -1;
+				
+
+				 createdParts[i+ j*count - 1] = elem.src;
+		
+				 check(unsortedParts, createdParts) && clear()
+				 
+			}
+		}
+
+		// var box = document.getElementById("canvasBg");
+		// box.outerHTML;
+		
+		
+	};
+
+	function clear() {
+		
+		var container = document.getElementById("pieces");
+		createdParts = [];
+		container.innerHTML = "";
+	}
+
+	document.getElementById("help").onclick = function bot() {
+
+		var el = document.querySelector('img.puzzle');
+		if (el) {
+			console.log('tr')
+			var ind = unsortedParts.indexOf(el.src);
+			
+					 moveTo( el, ind);
+
+		}
+		
+
+	}
+
+	function moveTo(el, ind) {
+		
+		var i,j;
+		i = ind % count;
+		j = (ind - i)/count;
+
+		console.log()
+	
+		el.style.top = topCorner.top + el.clientHeight*j + 'px' ;
+		el.style.left = topCorner.left + el.clientWidth*i + 'px';
+		el.classList.remove('puzzle')
+
+		createdParts[ind] = el.src;
+		
+		
+		check(unsortedParts, createdParts) ;
+
+	}
+
+	function check(a,b) {
+		
+		for (var i=0; i< a.length; i++) {
+			if (a[i] !== b[i]) {
+				
+				return false; 
+			}
+		}
+		return true;
+	}
+	this.onDragCancel = function(dragObject) {
+		// dragObject.avatar.rollback();
+		// console.log('rollback')
+	};
 
 };
 

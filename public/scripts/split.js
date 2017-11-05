@@ -1,20 +1,22 @@
+var unsortedParts;
+var count = 2;
 document.getElementById("play").onclick = function (){
+	clear();
 	var imageLoader = document.getElementById('imageLoader');
 		imageLoader.addEventListener('change', handleImage, false);
 	var canvas = document.createElement("canvas");
 	// var canvas = document.getElementById("canvas");
 	var ctx = canvas.getContext("2d");
-	var parts = [],
-		count = 2;
-
+	var parts = [], count = 2;
+	
 	var img = new Image();
 	img.addEventListener('load', splitImg, false);
 	img.src = "./images/default.jpg";
 
 	/// set default background img
 	var el = document.getElementById("canvasBg");
-	el.style.backgroundImage = "url(" + img.src + ")";
-	
+		el.style.backgroundImage = "url(" + img.src + ")";
+		
 	// var css = {
 	// 		opacity: "0.5",
 	// 		backgroundRepeat: "no-repeat",
@@ -51,6 +53,7 @@ document.getElementById("play").onclick = function (){
 	
 
 	function splitImg() {
+		// alert(this.width + " " + this.height);
 		parts = [];
 		// var width = Math.floor(img.width / count);
 		// var height = Math.floor(img.height / count);
@@ -84,7 +87,7 @@ document.getElementById("play").onclick = function (){
 				// console.log(parts);
 			}
 		}
-
+       unsortedParts = parts.slice();
 		
 		shuffle(parts);
 		draw();
@@ -113,10 +116,15 @@ document.getElementById("play").onclick = function (){
 	///
 	function draw() {
 		clear();
+		var cont = document.getElementById('canvasBg')
 		for(var i = 0; i < count * count; i++ ){
 			var slicedImage = document.createElement("img");
-				slicedImage.setAttribute('class', 'draggable');
+				slicedImage.setAttribute('class', 'draggable puzzle');
+			
 			slicedImage.src = parts[i];
+			
+			slicedImage.style.width = parseInt(cont.clientWidth)/count + 'px';
+			slicedImage.style.height = parseInt(cont.clientHeight)/count +'px';
 			var div = document.getElementById("pieces");
 			div.appendChild( slicedImage );
 		}
@@ -125,11 +133,11 @@ document.getElementById("play").onclick = function (){
 			elems[i].style.zIndex = "2";
 			elems[i].style.position = "absolute";
 			if(i % 2){
-			  elems[i].style.top = i * 80 + 'px';
-			  elems[i].style.left = i * 40 + 'px'; 
+			  elems[i].style.top = i * 40 + 'px';
+			  elems[i].style.left = i * 20 + 'px'; 
 			} else {
-			  elems[i].style.top = i * 80 + 'px' ;
-			  elems[i].style.left = (i+1) * 20 + 'px';
+			  elems[i].style.top = i * 40 + 'px' ;
+			  elems[i].style.left = (i+1) * 10 + 'px';
 			}
 		}
 	  
